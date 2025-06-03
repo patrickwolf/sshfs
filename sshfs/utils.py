@@ -32,7 +32,7 @@ def wrap_exceptions(func):
         except ProcessError as exc:
             message = exc.stderr.strip()
             if message.endswith(_NOT_FOUND):
-                raise FileNotFoundError(errno.ENOENT, _NOT_FOUND) from exc
+                raise FileNotFoundError(errno.ENOENT, message) from exc
             raise
         except SFTPFailure as exc:
             message = exc.reason
